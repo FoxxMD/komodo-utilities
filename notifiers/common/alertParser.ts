@@ -153,6 +153,14 @@ export const parseAlert = <T extends Alert = CommonAlert>(
                     }
                     break;
             }
+
+            if ("message" in data && typeof data.message === "string" && type !== "AwsBuilderTerminationFailed") {
+                message.push(data.message);
+            }
+
+            if ("details" in data && typeof data.details === "string" && data.details.trim() !== "") {
+               message.push(data.details);
+            }
         }
 
         return {

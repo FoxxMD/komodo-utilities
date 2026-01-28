@@ -26,6 +26,12 @@ An [Alerter](https://komo.do/docs/resources#alerter) that pushes to [Apprise](ht
 
 [See README](/notifiers/apprise/README.md)
 
+## Microsoft Teams Webhook Alerter
+
+An [Alerter](https://komo.do/docs/resources#alerter) that pushes to [Microsoft Teams](https://docs.microsoft.com/en-us/microsoftteams/) using Incoming Webhooks
+
+[See README](/notifiers/teams/README.md)
+
 # [Actions](https://komo.do/docs/procedures)
 
 ## Find IP
