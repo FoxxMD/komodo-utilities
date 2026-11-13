@@ -154,11 +154,14 @@ const program = async () => {
                 break;
         }
 
-        const body: Record<string, any> = {
-            title: titleAndSubtitle(data),
-            body: data.message,
-            type: notifyType
-        }
+        // Apprise rejects a notification without a body (400 "Payload lacks
+        // minimum requirements"). Some alerts have no message, e.g. ResourceSyncPendingUpdates
+        // with level OK, so send the title as the body in that case.
+        const title = titleAndSubtitle(data);
+        const hasMessage = data.message !== undefined && data.message.trim() !== '';
+        const body: Record<string, any> = hasMessage
+            ? { title, body: data.message, type: notifyType }
+            : { body: title, type: notifyType };
         if(tag !== undefined) {
             body.tag = tag;
         }
